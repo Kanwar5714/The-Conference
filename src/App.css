@@ -1,38 +1,106 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Container for full-page center alignment */
+.login-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(120deg, #6a11cb, #2575fc);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Card style */
+.login-card {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 350px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.login-card h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.login-card p {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Login button */
+.login-btn {
+  background: #ffffff;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #444;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 8px;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.login-btn:hover {
+  background: #f8f8f8;
+  transform: scale(1.05);
+}
+
+/* Join Room button */
+.join-btn {
+  background: #28a745;
   color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.join-btn:hover {
+  background: #1e7e34;
+  transform: scale(1.05);
 }
 
-@keyframes App-logo-spin {
+/* Logout button */
+.logout-btn {
+  background: #ff4757;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #e84118;
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(-20px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }

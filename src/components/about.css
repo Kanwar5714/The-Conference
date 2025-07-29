@@ -1,0 +1,40 @@
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background: linear-gradient(120deg, #0f0f0f, #1c1c1c);
+  padding: 20px;
+}
+
+.about-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 15px;
+  padding: 40px;
+  max-width: 700px;
+  text-align: center;
+  color: #f5f5f5;
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.8);
+}
+
+.about-card h1 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  background: linear-gradient(45deg, #ff5f6d, #ffc371);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.about-card p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 10px 0;
+  color: #ddd;
+}
+
+.about-footer {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #aaa;
+}
