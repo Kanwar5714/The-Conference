@@ -1,11 +1,16 @@
+import os
+import uuid
+import eventlet
+eventlet.monkey_patch()
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_socketio import SocketIO, emit, join_room
-import uuid
 
+# ---------------- App Setup ---------------- #
 app = Flask(__name__)
 CORS(app)
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app, cors_allowed_origins="*", async_mode="eventlet")
 
 # ---------------- Homepage Route ---------------- #
 @app.route("/")
@@ -43,7 +48,7 @@ def handle_join(data=None):
     waiting_users.append(user_id)
     print(f"User {user_id} joined queue")
 
-    # If there are 2 users waiting, create a room
+    # If 2+ users waiting, match them
     if len(waiting_users) >= 2:
         user1 = waiting_users.pop(0)
         user2 = waiting_users.pop(0)
@@ -59,17 +64,17 @@ def handle_join(data=None):
 
 @socketio.on("offer")
 def handle_offer(data):
-    room_id = data["room_id"]
+    room_id = data.get("room_id")
     emit("offer", data, room=room_id, include_self=False)
 
 @socketio.on("answer")
 def handle_answer(data):
-    room_id = data["room_id"]
+    room_id = data.get("room_id")
     emit("answer", data, room=room_id, include_self=False)
 
 @socketio.on("ice-candidate")
 def handle_ice_candidate(data):
-    room_id = data["room_id"]
+    room_id = data.get("room_id")
     emit("ice-candidate", data, room=room_id, include_self=False)
 
 @socketio.on("disconnect")
@@ -86,6 +91,8 @@ def handle_disconnect():
                 del rooms[room_id]
             break
 
+# ---------------- Server Start ---------------- #
 if __name__ == "__main__":
-    print("🔥 Starting Student Video Room Backend...")
-    socketio.run(app, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    print(f"🔥 Starting Student Video Room Backend on port {port}...")
+    socketio.run(app, host="0.0.0.0", port=port)
