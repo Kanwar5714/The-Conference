@@ -4,7 +4,7 @@ import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./Room.css"; // Import CSS
 
-const socket = io("http://127.0.0.1:5000");
+const socket = io("https://the-conference.onrender.com/");
 
 function Room() {
   const [roomId, setRoomId] = useState(null);
